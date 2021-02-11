@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { axios } from 'axios';
+
 import { Link } from 'react-router-dom';
 import {
   Row,
@@ -11,18 +11,18 @@ import {
   ListGroupItem,
 } from 'react-bootstrap';
 import Ratings from '../Components/Ratings';
+import axios from 'axios';
 
 const ProductScreen = ({ match, ...props }) => {
   const [product, setProduct] = useState({});
 
   useEffect(() => {
-    const fetchProducts = async () => {
+    const fetchProduct = async () => {
       const { data } = await axios.get(`/api/products/${match.params.id}`);
-      console.log(data);
       setProduct(data);
     };
 
-    fetchProducts();
+    fetchProduct();
   }, []);
 
   return (

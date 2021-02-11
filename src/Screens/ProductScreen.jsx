@@ -10,8 +10,7 @@ import {
   Button,
   ListGroupItem,
 } from 'react-bootstrap';
-
-import Rating from '../component/Rating';
+import Ratings from '../Components/Ratings';
 
 const ProductScreen = ({ match, ...props }) => {
   const [product, setProduct] = useState({});
@@ -41,7 +40,7 @@ const ProductScreen = ({ match, ...props }) => {
               <h2>{product?.name}</h2>{' '}
             </ListGroupItem>
             <ListGroupItem>
-              <Rating
+              <Ratings
                 value={product?.rating}
                 text={`${product?.numReviews} reviews`}
               />

@@ -100,7 +100,6 @@ const ProductScreen = ({ match, history, ...props }) => {
                     </Row>
                   </ListGroupItem>
                 )}
-
                 <ListGroupItem>
                   <Button
                     onClick={addToCartHandler}

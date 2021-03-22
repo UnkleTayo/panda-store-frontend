@@ -6,10 +6,10 @@ import FormContainer from '../Components/FormContainer'
 import {login} from '../actions/userAction'
 import Message from '../Components/Message'
 import Loader from '../Components/Loader'
+
 const LoginScreen = ({location, history, ...props}) => {
     const [email,setEmail] = useState('')
     const [password,setPassword] = useState('')
-    console.log(props)
 
     const dispatch = useDispatch()
 
@@ -25,7 +25,7 @@ const LoginScreen = ({location, history, ...props}) => {
     }, [history, userInfo, redirect])
 
     const submitHandler = (e) => {
-        e.preventDefault()
+        e.preventDefault() 
         dispatch(login(email, password))
     }
     return (
@@ -35,7 +35,7 @@ const LoginScreen = ({location, history, ...props}) => {
     {loading && <Loader/>}
     <Form onSubmit={submitHandler}>
         <Form.Group controlId='email'>
-            <Form.Label>Email Addres</Form.Label>
+            <Form.Label>Email Address</Form.Label>
             <Form.Control type='email' placeholder='Enter email' 
             value={email}
             onChange={(e) => setEmail(e.target.value)}>

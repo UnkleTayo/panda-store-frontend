@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Button, Col, Form, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 // import { Link } from "react-router-dom";
-import { getUserDetails } from "../actions/userAction";
+import { getUserDetails, updateUserProfile } from "../actions/userAction";
 import Message from "../Components/Message";
 import Loader from "../Components/Loader";
 
@@ -20,11 +20,16 @@ const ProfileScreen = ({ location, history, ...props }) => {
 
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
+
+  const userUpdateProfile = useSelector((state) => state.userUpdateProfile);
+  const { success } = userUpdateProfile;
+
+
   useEffect(() => {
     if (!userInfo) {
       history.push("/login");
     } else {
-      if (!user.name) {
+      if (!user?.name) {
         dispatch(getUserDetails("profile"));
     } else {
         setName(user.name);
@@ -35,11 +40,17 @@ const ProfileScreen = ({ location, history, ...props }) => {
 
   const submitHandler = (e) => {
     e.preventDefault();
+    // console.log("Hello")
     if (password !== confirmPassword) {
       setMessage("Passwords do not match");
+      return
     } else {
-      // dispatch register
+        // dispatch register
+        // console.log({_id: user._id})
+        dispatch(updateUserProfile({_id: user._id, name, email, password}))
+        console.log("Hello")
     }
+
   };
   return (
     <Row>
@@ -47,6 +58,7 @@ const ProfileScreen = ({ location, history, ...props }) => {
         <h2>Update Profile</h2>
         {error && <Message variant="danger">{error}</Message>}
         {message && <Message variant="danger">{message}</Message>}
+        {success && <Message variant="success">Profile Successfully Updated!</Message>}
         {loading && <Loader />}
 
         <Form onSubmit={submitHandler}>
@@ -89,7 +101,7 @@ const ProfileScreen = ({ location, history, ...props }) => {
               onChange={(e) => setConfirmPassword(e.target.value)}
             ></Form.Control>
           </Form.Group>
-          <Button type="submit" variant="primary">
+          <Button  type="submit" variant="primary">
             Update
           </Button>
         </Form>

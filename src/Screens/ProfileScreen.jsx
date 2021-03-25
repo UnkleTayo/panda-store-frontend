@@ -48,7 +48,6 @@ const ProfileScreen = ({ location, history, ...props }) => {
         // dispatch register
         // console.log({_id: user._id})
         dispatch(updateUserProfile({_id: user._id, name, email, password}))
-        console.log("Hello")
     }
 
   };
@@ -93,7 +92,7 @@ const ProfileScreen = ({ location, history, ...props }) => {
           </Form.Group>
 
           <Form.Group controlId="confirmPassword">
-            <Form.Label>Password</Form.Label>
+            <Form.Label>Confirm Password</Form.Label>
             <Form.Control
               type="password"
               placeholder="Confirm Password"
